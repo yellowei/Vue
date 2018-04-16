@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-text&v-html</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>v-text&v-html</h1>
+    <hr>
+    <div id="app">
+        <p>'{ { message } }'</p>
+        <span>{{ message }}</span>
+        <hr>
+        <p>"v-text"</p><span v-text="message"></span>
+        <hr>
+        <p>"v-html" (xss攻击)</p><span v-html="abc"></span>
+    </div>
+
+    <script type="text/javascript">
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                message : "Hello World!!!",
+                abc: "<h2>hello world!</h2>"
+            }
+        })
+    </script>
+</body>
+</html>
