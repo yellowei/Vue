@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>propsData Option</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>propsData Option</h1>
+    <hr>
+
+    <header></header>
+
+    <hr>
+    <p>总结：propsData在实际开发中我们使用的并不多，我们在后边会学到Vuex的应用，他的作用就是在单页应用中保持状态和数据的。</p>
+
+    <script type="text/javascript">
+        var header_a = Vue.extend({
+            template: `<h2>{{ message }} - {{ a }}</h2>`,
+            data: function () {
+                return {
+                    message: 'I`m a extend'
+                }
+            },
+            props: ['a']
+        })
+
+        new header_a({propsData:{a:"yes"}}).$mount('header');
+    </script>
+</body>
+
+</html>

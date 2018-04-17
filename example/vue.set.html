@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.set 实例</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue.set 实例</h1>
+    <hr>
+    <div id="app">
+        count:{{ count }}
+        <ol>
+            <li v-for="item in arr">{{ item }}</li>
+        </ol>
+    </div>
+
+    <p>
+        <button onclick="onAddClick()">ADD</button>
+    </p>
+
+    <p>
+        <h2>直接操作下标改数组里面的数据, 不会触发vue刷新界面</h2>
+    </p>
+    <p>
+        <h2>如果在通过下标修改数组里面数据的同时, 也改了某个其它数据(不是下标方式修改), 会触发vue的界面刷新</h2>
+    </p>
+    <p>
+        <h2>这个刷新的触发动作其实是非下标修改的那个数据造成的.</h2>
+    </p>
+
+    <p>
+        <span style="color: #ff6600;">
+            <strong>为什么要有Vue.set的存在?</strong>
+        </span>
+    </p>
+    <p>由于Javascript的限制，Vue不能自动检测以下变动的数组。</p>
+    <p style="padding-left: 30px;">*当你利用索引直接设置一个项时，vue不会为我们自动更新。</p>
+    <p style="padding-left: 30px;">*当你修改数组的长度时，vue不会为我们自动更新。</p>
+    <script type="text/javascript">
+        function onAddClick() {
+            // vueData.count ++ ;
+            // vueData.arr[1] = 'ddd';
+            // vueData.arr[1] = 'ddd';
+            Vue.set(vueData.arr, 1, 'ddd')
+        }
+        var vueData = {
+            count: 1,
+            // goods: 'car',
+            arr: ['aaa', 'bbb', 'ccc']
+        }
+
+        var vue = new Vue({
+            el: "#app",
+            data: vueData
+        })
+    </script>
+</body>
+
+</html>

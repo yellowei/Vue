@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>methods Option</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>methods Option</h1>
+    <hr>
+    <div id="app">
+        <p>{{ count }}</p>
+        <p>
+            <button v-on:click="onAddClick(2, $event)">ADD</button>
+        </p>
+        <p>
+            <btn v-on:click.native="onAddClick(3, $event)"></btn>
+        </p>
+    </div>
+    <p>
+        <button onclick="vue.onAddClick(4, MouseEvent)">外部Btn</button>
+    </p>
+
+    <hr>
+    <p><img src="../assets/img/MouseEvent.png" alt=""></p>
+    <script type="text/javascript">
+        var btnComponent = {
+            template: `<button>Component Btn</button>`
+        }
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                count: 1,
+            },
+            components: {
+                'btn': btnComponent,
+            },
+            methods: {
+                onAddClick: function (num, event) {
+                    if (num != '') {
+                        this.count += num;
+                    } else {
+                        this.count++;
+                    }
+                    console.log(event)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

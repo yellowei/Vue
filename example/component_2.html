@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue的component (2)</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue的component (2) props</h1>
+    <hr>
+    <div id="app">
+        <p>一般属性处理方式:</p>
+        <laoxie here="China" your-age="18"></laoxie>
+        <p>v-bind处理方式:</p>
+        <laoxie :here="message" :your-age="age"></laoxie>
+    </div>
+
+
+    <script type="text/javascript">
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                message: "SiChuan",
+                age: 20,
+            },
+            components: {
+                'laoxie': {
+                    template: '<div style="color: red">Panda from {{ here }}, age: {{ yourAge }}</div>',
+                    props: ['here', 'yourAge']
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

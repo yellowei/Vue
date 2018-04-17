@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed Option</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>computed Option</h1>
+    <hr>
+    <div id="app">
+        <p>original - {{ price }}</p>
+        <p>computed - {{ newPrice }}</p>
+
+        <hr>
+        <h2>original data:</h2>
+        <ul>
+            <li v-for="item in newsList">{{ item.title }} - {{ item.date }}</li>
+        </ul>
+
+        <h2>computed data:</h2>
+        <ul>
+            <li v-for="item in reverseNews">{{ item.title }} - {{ item.date }}</li>
+        </ul>
+    </div>
+
+    <script>
+        var newsList = [
+            {title: '中国今年2月增持美债85亿美元 仍是美最大债权国', date: '2018/01/01'},
+            {title: '中国经济一季度成绩单今日揭晓 三大焦点值得关注', date: '2018/01/02'},
+            {title: '国务院新机构密集挂牌 开局工作办了哪些大事？', date: '2018/01/03'},
+            {title: '公务员省考将扎堆举行 多地推优惠政策招急缺人才', date: '2018/01/04'}
+        ]
+        var app = new Vue({
+            el: '#app',
+            data: {
+                price: 100,
+                newsList: newsList
+            },
+            computed: {
+                newPrice: function () {
+                    return '¥' + this.price + '元';
+                },
+                reverseNews: function () {
+                    var result = this.newsList.slice();
+                    return result.reverse();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
