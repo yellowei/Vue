@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mixins Option</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>mixins Option</h1>
+    <hr>
+    <div id="app">
+        {{ count }}
+        <p>
+            <button @click="onAddClick">ADD</button>
+        </p>
+
+        <h3>注意: 全局混入要写在vue实例构造之前, 不然无效</h3>
+    </div>
+
+    <script type="text/javascript">
+        var addLog = {
+            updated: function () {
+                console.log('数据发生变化了, 变成了' + this.count);
+            }
+        };
+
+        Vue.mixin({
+            updated: function () {
+                console.log('我是全局的混入');
+            }
+        });
+
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                count: 1,
+            },
+            methods: {
+                onAddClick: function () {
+                    this.count++;
+                }
+            },
+            updated: function () {
+                console.log('我是原生的updated方法, 我执行了');
+            },
+            mixins: [addLog]
+        });
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Instance Methods - Events</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <h2>Instance Methods - Events</h2>
+    <hr>
+    <div id="app">
+        {{ count }}
+    </div>
+
+    <p><button onclick="increasing()">Add</button></p>
+    <p><button onclick="decreasing()">OnceReduce</button></p>
+    <p><button onclick="off()">关闭Add的事件</button></p>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                count:1,
+            }
+        })
+
+        app.$on('increasing', function () {
+            app.count ++ ;
+        })
+
+        app.$once('decreasing', function () {
+            app.count --;
+        })
+
+        function increasing () {
+            app.$emit('increasing');
+            console.log('count增加了');
+        }
+
+        function decreasing() {
+            app.$emit('decreasing');
+            console.log('只能减少一次');
+        }
+
+        function off () {
+            app.$off('increasing');
+        }
+    </script>
+</body>
+
+</html>

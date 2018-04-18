@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Instance Methods入门</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <h2>Instance Methods入门</h2>
+    <hr>
+    <div id="app">
+        {{ message }}
+    </div>
+
+    <h3>注意: jquery只能在vue的updated和mounted方法里面使用, 不然会找不到dom</h3>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello world',
+            },
+            methods: {
+                add: function () {
+                    console.log('vue构造器内部的add方法被调用了');
+                }
+            },
+            mounted: function () {
+                $('#app').html('我是jQuery!');
+            }
+        })
+
+        app.add();
+    </script>
+</body>
+
+</html>

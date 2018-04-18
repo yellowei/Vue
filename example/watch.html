@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch Option</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>watch Option</h1>
+    <hr>
+    <div id="app">
+        <p>今日温度: {{ temperature }}摄氏度</p>
+        <p>穿衣指数: {{ clothingIndex }}</p>
+        <P>
+            <button v-on:click="increasingTemp">升高温度</button>
+            <button v-on:click="decreasingTemp">降低温度</button>
+        </P>
+    </div>
+
+    <script type="text/javascript">
+        var clothingIndexArray = ['棉衣,羽绒衣', '夹克,长裙', 'T恤,短袖']
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                temperature: 20,
+                clothingIndex: '夹克,长裙'
+            },
+            methods: {
+                increasingTemp: function () {
+                    this.temperature += 3;
+                },
+                decreasingTemp: function () {
+                    this.temperature -= 3;
+                }
+            },
+            // watch: {
+            //     temperature: function (newVal, oldVal) {
+            //         if (newVal <= 0) {
+            //             this.clothingIndex = clothingIndexArray[0];
+            //         } else if (newVal <= 26 && newVal > 0) {
+            //             this.clothingIndex = clothingIndexArray[1];
+            //         } else {
+            //             this.clothingIndex = clothingIndexArray[2];
+            //         }
+            //     }
+            // }
+        })
+
+        vue.$watch('temperature', function (newVal, oldVal) {
+            if (newVal <= 0) {
+                this.clothingIndex = clothingIndexArray[0];
+            } else if (newVal <= 26 && newVal > 0) {
+                this.clothingIndex = clothingIndexArray[1];
+            } else {
+                this.clothingIndex = clothingIndexArray[2];
+            }
+        });
+    </script>
+</body>
+
+</html>
