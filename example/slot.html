@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>slot的用法</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>slot的用法</h1>
+    <hr>
+    <div id="app">
+        <People>
+            <span slot="name">{{ name }}</span>
+            <span slot="sex">{{ sex }}</span>
+            <span slot="age">{{ age }}</span>
+        </People>
+    </div>
+
+    <template id="temp">
+        <div>
+            <p>姓名:<slot name="name"></slot></p>
+            <p>性别:<slot name="sex"></slot></p>
+            <p>年龄:<slot name="age"></slot></p>
+        </div>
+    </template>
+
+    <script type="text/javascript">
+        var ATemplate = {
+            template: '#temp'
+       }
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                name: 'yellowei',
+                sex: '男',
+                age: '18'
+            },
+            components: {
+                'People': ATemplate,
+            }
+        })
+    </script>
+</body>
+
+</html>
